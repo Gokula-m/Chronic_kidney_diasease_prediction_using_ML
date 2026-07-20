@@ -1,0 +1,98 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CKD Prediction</title>
+  <link rel="stylesheet" href="{% static 'predictor/styles.css' %}">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="workspace">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Chronic Kidney Disease</p>
+          <h1>Patient CKD Prediction</h1>
+        </div>
+        <div class="model-chip">ML Model: Random Forest</div>
+      </header>
+
+      {% if result %}
+        <section class="result result-{{ result.status }}" aria-live="polite">
+          <div>
+            <p class="result-label">Prediction Result</p>
+            <h2>{{ result.message }}</h2>
+          </div>
+          <div class="score">
+            <span>{{ result.probability }}%</span>
+            <small>CKD probability</small>
+          </div>
+        </section>
+      {% endif %}
+
+      <form method="post" class="prediction-form">
+        {% csrf_token %}
+
+        <section class="form-section">
+          <div class="section-heading">
+            <h2>Basic and Urine Tests</h2>
+          </div>
+          <div class="field-grid">
+            <label>{{ form.age.label_tag }}{{ form.age }}</label>
+            <label>{{ form.bp.label_tag }}{{ form.bp }}</label>
+            <label>{{ form.sg.label_tag }}{{ form.sg }}</label>
+            <label>{{ form.al.label_tag }}{{ form.al }}</label>
+            <label>{{ form.su.label_tag }}{{ form.su }}</label>
+            <label>{{ form.rbc.label_tag }}{{ form.rbc }}</label>
+            <label>{{ form.pc.label_tag }}{{ form.pc }}</label>
+            <label>{{ form.pcc.label_tag }}{{ form.pcc }}</label>
+            <label>{{ form.ba.label_tag }}{{ form.ba }}</label>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <div class="section-heading">
+            <h2>Blood and Serum Values</h2>
+          </div>
+          <div class="field-grid">
+            <label>{{ form.bgr.label_tag }}{{ form.bgr }}</label>
+            <label>{{ form.bu.label_tag }}{{ form.bu }}</label>
+            <label>{{ form.sc.label_tag }}{{ form.sc }}</label>
+            <label>{{ form.sod.label_tag }}{{ form.sod }}</label>
+            <label>{{ form.pot.label_tag }}{{ form.pot }}</label>
+            <label>{{ form.hemo.label_tag }}{{ form.hemo }}</label>
+            <label>{{ form.pcv.label_tag }}{{ form.pcv }}</label>
+            <label>{{ form.wc.label_tag }}{{ form.wc }}</label>
+            <label>{{ form.rc.label_tag }}{{ form.rc }}</label>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <div class="section-heading">
+            <h2>Medical History</h2>
+          </div>
+          <div class="field-grid compact">
+            <label>{{ form.htn.label_tag }}{{ form.htn }}</label>
+            <label>{{ form.dm.label_tag }}{{ form.dm }}</label>
+            <label>{{ form.cad.label_tag }}{{ form.cad }}</label>
+            <label>{{ form.appet.label_tag }}{{ form.appet }}</label>
+            <label>{{ form.pe.label_tag }}{{ form.pe }}</label>
+            <label>{{ form.ane.label_tag }}{{ form.ane }}</label>
+          </div>
+        </section>
+
+        {% if form.errors %}
+          <div class="form-errors">
+            Please check the highlighted values and try again.
+          </div>
+        {% endif %}
+
+        <div class="actions">
+          <button type="submit">Predict CKD</button>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

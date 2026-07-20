@@ -1,0 +1,50 @@
+{
+  "dataset_rows": 400,
+  "dataset_columns": 24,
+  "test_accuracy": 1.0,
+  "cross_validation_accuracy_mean": 0.9925,
+  "cross_validation_accuracy_scores": [
+    0.9875,
+    1.0,
+    0.9875,
+    0.9875,
+    1.0
+  ],
+  "confusion_matrix": [
+    [
+      30,
+      0
+    ],
+    [
+      0,
+      50
+    ]
+  ],
+  "classification_report": {
+    "notckd": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 30.0
+    },
+    "ckd": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 50.0
+    },
+    "accuracy": 1.0,
+    "macro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 80.0
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 80.0
+    }
+  }
+}
